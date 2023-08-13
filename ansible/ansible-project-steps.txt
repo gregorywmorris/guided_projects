@@ -1,0 +1,69 @@
+
+See also: https://www.cyberciti.biz/faq/how-to-install-and-configure-latest-version-of-ansible-on-ubuntu-linux/
+
+1. create ansible machine sg
+	ssh from local ip
+	
+2. creater server sg
+	ssh from anisble sg
+	http port 80
+	
+3. launch ansible-machine
+	.ppk key pair
+	
+4. create key pairs on the ansible-machine
+	ssh-keygen -t rsa -b 2048
+	/home/ec2-user/.ssh/id_rsa.pub
+
+5. import public key into the ec2 console
+	ansible-ssh
+	print public key and copy into aws kp storage
+	
+6. launch the servers
+	key pair ansible-ssh key imported
+	sg: ansible-server-sg
+	
+7. test connection
+	ssh private ip
+	
+8. Install ansible
+	sudo apt update
+	sudo apt upgrade
+	sudo apt install software-properties-common
+	sudo apt-add-repository ppa:ansible/ansible
+	sudo apt update
+	sudo apt install ansible
+	If issue arises: sudo apt --fix-broken install
+	ansible --version
+	
+	arg complte (optional)
+	sudo apt install python3-argcomplete
+	sudo activate-global-python-argcomplete3
+	** Now you can press the [Tab] to get a list of options for bash and other shell **
+
+9. Creat inventory file
+	sudo vi /etc/ansible/hosts
+	or
+	vi $HOME/hosts
+	to save write and extit:  :wq
+	
+10. Create playbook
+	mkdir .ansible/ansible-playbooks
+	vi deploy-techmax.yml
+	paste from here: 
+	:wq!
+	
+11. AOS tutorial aws linux: ansible all -key-file ~/ .ssh/id_rsa -i inventory -m ping
+	ubuntu: ansible all -m ping -v
+
+12. create ansible.cfg file
+	ubuntu: sudo vi /etc/ansible/ansible.
+	insert:
+		[defauts]
+		remote_user = ubuntu
+		private_key_file = ~/.ssh/id_rsa
+
+
+13. run ansible playbook
+	ansible-playbook ./.ansible/ansible-playbooks/
+	
