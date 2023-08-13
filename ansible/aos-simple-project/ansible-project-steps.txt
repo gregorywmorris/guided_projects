@@ -1,6 +1,8 @@
 
 See also: https://www.cyberciti.biz/faq/how-to-install-and-configure-latest-version-of-ansible-on-ubuntu-linux/
 
+Note: I used Ubunto instead of AWS Linux
+
 1. create ansible machine sg
 	ssh from local ip
 	
@@ -42,28 +44,26 @@ See also: https://www.cyberciti.biz/faq/how-to-install-and-configure-latest-vers
 	** Now you can press the [Tab] to get a list of options for bash and other shell **
 
 9. Creat inventory file
+	# This is the default Ubuntu location
 	sudo vi /etc/ansible/hosts
-	or
-	vi $HOME/hosts
-	to save write and extit:  :wq
+	to save write and extit:  :wq!
 	
 10. Create playbook
-	mkdir .ansible/ansible-playbooks
-	vi deploy-techmax.yml
-	paste from here: 
+	sudo mkdir ansible-playbooks
+	sudo vi /ansible-playbooks/deploy-techmax.yml
+	paste from here: https://github.com/gregorywmorris/guided_projects/blob/main/ansible/aos-simple-project/deply-techmax.yml
 	:wq!
 	
 11. AOS tutorial aws linux: ansible all -key-file ~/ .ssh/id_rsa -i inventory -m ping
 	ubuntu: ansible all -m ping -v
 
 12. create ansible.cfg file
-	ubuntu: sudo vi /etc/ansible/ansible.
+	sudo vi /etc/ansible/ansible.cfg
 	insert:
 		[defauts]
 		remote_user = ubuntu
 		private_key_file = ~/.ssh/id_rsa
 
-
 13. run ansible playbook
-	ansible-playbook ./.ansible/ansible-playbooks/
+	ansible-playbook ./ansible-playbooks/deploy-techmax.yml
 	
