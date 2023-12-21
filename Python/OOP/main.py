@@ -1,8 +1,8 @@
 class Item: 
     def __init__(self,name:str, price:float, quantiy=0):
         # run validations
-        assert price >= 0
-        assert quantiy >= 0
+        assert price >= 0, f"Price {price} is not greater than 0"
+        assert quantiy >= 0, f"Quantity {quantiy} is not greater than 0"
 
         # Assign to self object
         print(f"An instance created for {name}")
