@@ -29,10 +29,11 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv','r') as f:
+        with open('./Python/OOP/items.csv','r') as f:
             reader = csv.DictReader(f)
             items = list(reader)
-        
+            print(items)
+            
         for item in items:
             Item(
                 name=item.get('name'),
@@ -48,15 +49,19 @@ class Item:
             return True
         else:
             return False
-
     
     def __repr__(self) -> str:
         return f"Item('{self.name}',{self.price},{self.quantity})"
+
+class Phone(Item):
+    pass
 
 Item.instantiate_from_csv
 
 print(Item.all)
 
+phone1 = Item("jscPhoneC10",500,5)
+phone2 = Item("jscPhoneC20",700,5)
 
 # item1 = Item("Phone", 100, 1)
 # item2 = Item("Laptop", 1000, 3)
