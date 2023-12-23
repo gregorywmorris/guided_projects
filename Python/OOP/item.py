@@ -33,7 +33,7 @@ class Item:
             reader = csv.DictReader(f)
             items = list(reader)
             print(items)
-            
+
         for item in items:
             Item(
                 name=item.get('name'),
@@ -54,14 +54,15 @@ class Item:
         return f"Item('{self.name}',{self.price},{self.quantity})"
 
 class Phone(Item):
-    pass
+    def __init__(self, name: str, price: float, quantiy=0) -> None:
+        super().__init__(name, price, quantiy)
 
 Item.instantiate_from_csv
 
 print(Item.all)
 
-phone1 = Item("jscPhoneC10",500,5)
-phone2 = Item("jscPhoneC20",700,5)
+# phone1 = Item("jscPhoneC10",500,5)
+# phone2 = Item("jscPhoneC20",700,5)
 
 # item1 = Item("Phone", 100, 1)
 # item2 = Item("Laptop", 1000, 3)
