@@ -1,16 +1,36 @@
-from typing import Optional
-from fastapi import FastAPI
+from typing import Optional, List
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-class Package(BaseModel):
+app = FastAPI(tittle="Todo API")
+
+class Todo(BaseModel):
     """
-    class
+    Todo: create, read, update, delete
     """
     name: str
-    number: str
-    description: Optional[str] = None
+    due_date: str
+    description: Optional[str]
 
-app = FastAPI()
+# class Package(BaseModel):
+#     """
+#     class
+#     """
+#     name: str
+#     number: str
+#     description: Optional[str] = None
+
+# class PackageIn(BaseModel):
+#     """
+#     class
+#     """
+#     secret_id: int
+#     name: str
+#     number: str
+#     description: Optional[str] = None
+
+
+store_todo = []
 
 @app.get('/')
 async def hello_world():
@@ -20,13 +40,70 @@ async def hello_world():
     """
     return {"Hello": "World"}
 
-@app.post("/package/{priority}")
-async def make_package(priority: int, package: Package, value: bool):
-    """
-    BaseModel
-    """
-    return {"priority": priority, **package.model_dump(), "value": value} 
-    # .dict() is depreciated, use model_dump()
+
+
+# @app.post('/todo/')
+# async def create_todo(todo: Todo):
+#     """
+#     create todo list
+#     """
+#     store_todo.append(todo)
+#     return todo
+
+# @app.get('/todo/', response_model=List[Todo])
+# async def get_all_todos():
+#     """
+#     get all todos
+#     """
+#     return store_todo
+
+# @app.get('/todo/{id}')
+# async def get_todo(id: int):
+#     """
+#     get 1 todo'
+#     """
+#     try:
+#         return store_todo[id]
+#     except Exception as e:
+#         raise HTTPException(status_code=404, detail="Todo not found") from e
+
+# @app.put('/todo/{id}')
+# async def update_todo(id: int, todo: Todo):
+#     """
+#     get method
+#     """
+#     try:
+#         store_todo[id] = todo
+#         return store_todo[id]
+#     except Exception as e:
+#         raise HTTPException(status_code=404, detail="Todo not found") from e
+
+# @app.delete('/todo/{id}')
+# async def delete_todo(id: int):
+#     """
+#     delete todo
+#     """
+#     try:
+#         # obj = store_todo[id]
+#         store_todo.pop(id)
+#         return f"Todo {id} deleted!"
+#     except Exception as e:
+#         raise HTTPException(status_code=404, detail="Todo not found") from e
+
+# @app.post("/package2/", response_model=Package)
+# async def make_package_2(package: PackageIn):
+#     """
+#     response model
+#     """
+#     return package
+
+# @app.post("/package/{priority}")
+# async def make_package(priority: int, package: Package, value: bool):
+#     """
+#     BaseModel
+#     """
+#     return {"priority": priority, **package.model_dump(), "value": value} 
+#     # .dict() is depreciated, use model_dump()
 
 # @app.get("/component/{component_id}") #path parameter
 # async def get_component(component_id: int):
@@ -41,4 +118,3 @@ async def make_package(priority: int, package: Package, value: bool):
 #     query parameters
 #     """
 #     return {"number": number, "text": text}
-
