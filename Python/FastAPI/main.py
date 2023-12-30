@@ -1,8 +1,26 @@
 from typing import Optional, List
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Form
 from pydantic import BaseModel
 
-app = FastAPI(tittle="Todo API")
+description = """
+## FastAPI Tutorial 
+by [IsaiahTTech, 2021](https://www.youtube.com/@isaiahttech9749)
+
+1. Getting Started
+1. Path and Query
+1. Pydantic BaseModel
+1. Response Model
+1. Simple Todo API
+1. Forms
+
+"""
+app = FastAPI(title="Todo API",
+              description = description,
+              contact={
+                  "name": "YouTube Playlist",
+                  "url": "https://www.youtube.com/playlist?list=PLShTCj6cbon9gK9AbDSxZbas1F6b6C_Mx"
+              },
+              version="12/30/2023")
 
 class Todo(BaseModel):
     """
@@ -12,22 +30,22 @@ class Todo(BaseModel):
     due_date: str
     description: Optional[str]
 
-# class Package(BaseModel):
-#     """
-#     class
-#     """
-#     name: str
-#     number: str
-#     description: Optional[str] = None
+class Package(BaseModel):
+    """
+    class
+    """
+    name: str
+    number: str
+    description: Optional[str] = None
 
-# class PackageIn(BaseModel):
-#     """
-#     class
-#     """
-#     secret_id: int
-#     name: str
-#     number: str
-#     description: Optional[str] = None
+class PackageIn(BaseModel):
+    """
+    class
+    """
+    secret_id: int
+    name: str
+    number: str
+    description: Optional[str] = None
 
 
 store_todo = []
@@ -40,81 +58,87 @@ async def hello_world():
     """
     return {"Hello": "World"}
 
+@app.post('/language/')
+async def language(name: str = Form(...), lang_type: str = Form(...)):
+    """
+    form, alternative to JSON
+    """
+    return {"name": name, "type": lang_type}
 
 
-# @app.post('/todo/')
-# async def create_todo(todo: Todo):
-#     """
-#     create todo list
-#     """
-#     store_todo.append(todo)
-#     return todo
+@app.post('/todo/')
+async def create_todo(todo: Todo):
+    """
+    create todo list
+    """
+    store_todo.append(todo)
+    return todo
 
-# @app.get('/todo/', response_model=List[Todo])
-# async def get_all_todos():
-#     """
-#     get all todos
-#     """
-#     return store_todo
+@app.get('/todo/', response_model=List[Todo])
+async def get_all_todos():
+    """
+    get all todos
+    """
+    return store_todo
 
-# @app.get('/todo/{id}')
-# async def get_todo(id: int):
-#     """
-#     get 1 todo'
-#     """
-#     try:
-#         return store_todo[id]
-#     except Exception as e:
-#         raise HTTPException(status_code=404, detail="Todo not found") from e
+@app.get('/todo/{my_id}')
+async def get_todo(my_id: int):
+    """
+    get 1 todo'
+    """
+    try:
+        return store_todo[my_id]
+    except Exception as e:
+        raise HTTPException(status_code=404, detail="Todo not found") from e
 
-# @app.put('/todo/{id}')
-# async def update_todo(id: int, todo: Todo):
-#     """
-#     get method
-#     """
-#     try:
-#         store_todo[id] = todo
-#         return store_todo[id]
-#     except Exception as e:
-#         raise HTTPException(status_code=404, detail="Todo not found") from e
+@app.put('/todo/{my_id}')
+async def update_todo(my_id: int, todo: Todo):
+    """
+    get method
+    """
+    try:
+        store_todo[my_id] = todo
+        return store_todo[my_id]
+    except Exception as e:
+        raise HTTPException(status_code=404, detail="Todo not found") from e
 
-# @app.delete('/todo/{id}')
-# async def delete_todo(id: int):
-#     """
-#     delete todo
-#     """
-#     try:
-#         # obj = store_todo[id]
-#         store_todo.pop(id)
-#         return f"Todo {id} deleted!"
-#     except Exception as e:
-#         raise HTTPException(status_code=404, detail="Todo not found") from e
+@app.delete('/todo/{my_id}')
+async def delete_todo(my_id: int):
+    """
+    delete todo
+    """
+    try:
+        # obj = store_todo[my_id]
+        store_todo.pop(my_id)
+        return f"Todo {my_id} deleted!"
+    except Exception as e:
+        raise HTTPException(status_code=404, detail="Todo not found") from e
 
-# @app.post("/package2/", response_model=Package)
-# async def make_package_2(package: PackageIn):
-#     """
-#     response model
-#     """
-#     return package
+@app.post("/package2/", response_model=Package)
+async def make_package_2(package: PackageIn):
+    """
+    response model
+    """
+    return package
 
-# @app.post("/package/{priority}")
-# async def make_package(priority: int, package: Package, value: bool):
-#     """
-#     BaseModel
-#     """
-#     return {"priority": priority, **package.model_dump(), "value": value} 
-#     # .dict() is depreciated, use model_dump()
+@app.post("/package/{priority}")
+async def make_package(priority: int, package: Package, value: bool):
+    """
+    BaseModel
+    """
+    return {"priority": priority, **package.model_dump(), "value": value} 
+    # .dict() is depreciated, use model_dump()
 
-# @app.get("/component/{component_id}") #path parameter
-# async def get_component(component_id: int):
-#     """
-#     component id
-#     """
-#     return {"component_id": component_id}
+@app.get("/component/{component_id}") #path parameter
+async def get_component(component_id: int):
+    """
+    component_id
+    """
+    return {"component_id": component_id}
 
-# @app.get("/component/") #query parameter
-# async def read_component(number: int, text: Optional[str]):
-#     """
-#     query parameters
-#     """
-#     return {"number": number, "text": text}
+@app.get("/component/") #query parameter
+async def read_component(number: int, text: Optional[str]):
+    """
+    query parameters
+    """
+    return {"number": number, "text": text}
