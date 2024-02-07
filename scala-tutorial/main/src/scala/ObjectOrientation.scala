@@ -34,8 +34,14 @@ object ObjectOrientation {
         def eat (animal: Animal): Unit
     }
 
-    class Crocodile extends Animal with Carnivore {
+    trait Philosopher {
+        def ?!(thought: String): Unit // ?! is a valid method name
+    }
+
+    class Crocodile extends Animal with Carnivore with Philosopher {
         override def eat(animal: Animal): Unit = println(s"I am eating you $animal!")
+
+        def ?!(thought: String): Unit = println("I think there for I am")
     }
 
     val aCroc = new Crocodile
