@@ -83,7 +83,7 @@ object FunctionalProgramming extends App {
     // vectors: fast Seq implementation
     val aVector = Vector(1,2,3,4,5)
 
-    // sets = no duplicates
+    // sets = no duplicates, unordered
     val aSet = Set(1,2,3,4,1,2,3) // Set(1,2,3,4)
     val setHas5 = aSet.contains(5) // false
     val anAddedSet = aSet + 5 // Set(1,2,3,4,5)
