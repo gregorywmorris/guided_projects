@@ -57,6 +57,7 @@ object FunctionalProgramming extends App {
     // all pairs between the numbers 1, 2, 3 and the letters 'a', 'b', 'c'
     val allPairs = List(1,2,3).flatMap(number => List('a', 'b', 'c').map(letter => s"$number-$letter"))
     println(allPairs)
+    
     // for comprehensions
     val alternativePairs = for {
         number <- List(1,2,3)
