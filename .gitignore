@@ -222,3 +222,4 @@ jitwatch.out
 project/**/metals.sbt
 
 .bsp
+.scala-build

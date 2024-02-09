@@ -10,7 +10,7 @@ object PatternMatching extends App {
         case 3 => "third"
         case _ => anInteger + "th"
     }
-    // PM is an EXPRESSION
+    // pattern matching is an EXPRESSION
 
     // Case class decomposition
     case class Person(name: String, age: Int)
@@ -20,6 +20,7 @@ object PatternMatching extends App {
         case Person(n, a) => s"Hi, my name is $n and I am $a years old."
         case _ => "Something else"
     }
+    println(personGreeting)
 
     // deconstructing tuples
     val aTuple = ("Bon Jovi", "Rock")
