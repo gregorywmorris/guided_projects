@@ -1,5 +1,4 @@
 ---
-
 - name: deploy techmax website
   hosts: all
   become: yes
