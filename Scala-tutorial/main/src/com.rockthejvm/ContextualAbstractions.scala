@@ -54,15 +54,17 @@ object ContextualAbstractions {
         def greet(): String = s"Hi, my name is $name, I love Scala!"
     }
 
-    extension (string: String)
-    def greet(): String = new Person(string).greet()
+    extension (string: String) {
+        def greet(): String = new Person(string).greet()
+    }
 
     val danielsGreeting = "Daniel".greet() // "type enrichment"
 
     // POWER
-    extension [A] (list: List[A])
-    def combineAllValues(using combinator: Combinator[A]): A =
-        list.reduce(combinator.combine)
+    extension [A] (list: List[A]) {
+        def combineAllValues(using combinator: Combinator[A]): A =
+            list.reduce(combinator.combine)
+    }
 
     val theSum_v2 = aList.combineAllValues
 
