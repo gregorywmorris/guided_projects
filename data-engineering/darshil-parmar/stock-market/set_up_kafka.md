@@ -2,7 +2,9 @@
 
 ## 1 Create Instance
 
-1. Edit security to allow all traffic from your local IP only
+1. Edit security to allow traffic
+1. `sudo apt-get update`
+1. `sudo apt-get install net-tools`
 
 ## 2 Install and Configure Kaka
 
@@ -12,7 +14,6 @@
     - `tar -xvf kafka_2.12-3.7.0.tgz`
 1. Install java
     - Ubuntu
-    1. `sudo apt-get update`
     1. `sudo sudo apt install default-jre`
     1. `sudo vi /etc/profile.d/jdk11.sh`
 
@@ -45,7 +46,7 @@
 1. `sudo vi kafka_2.12-3.7.0/config/server.properties`
 
     ```bash
-    advertised.listeners=PLAINTEXT:your-host-name:9092
+    advertised.listeners=PLAINTEXT://ec2-100-25-219-224.compute-1.amazonaws.com:9092
     ```
 
 ## 3 Start Zoo-keeper
@@ -61,13 +62,13 @@
 ## 5 Create the topic
 
 1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic demo_test --bootstrap-server ec2-3-92-32-133.compute-1.amazonaws.com:9092 --replication-factor 1 --partitions 1`
+1. `kafka_2.12-3.7.0/bin/kafka-topics.sh --create --topic demo_test --bootstrap-server 100.25.219.224:9092 --replication-factor 1 --partitions 1`
 
 ## 6 Start Producer
 
-1. `kafka_2.12-3.7.0/bin/kafka-console-producer.sh --topic demo_test --bootstrap-server ec2-3-92-32-133.compute-1.amazonaws.com:9092`
+1. `kafka_2.12-3.7.0/bin/kafka-console-producer.sh --topic demo_test --bootstrap-server 100.25.219.224:9092`
 
 ## 7 Start Consumer
 
 1. SSh into instance in a new window
-1. `kafka_2.12-3.7.0/bin/kafka-console-consumer.sh --topic demo_test --bootstrap-server ec2-3-92-32-133.compute-1.amazonaws.com:9092`
+1. `kafka_2.12-3.7.0/bin/kafka-console-consumer.sh --topic demo_test --bootstrap-server 100.25.219.224:9092`
