@@ -1,0 +1,20 @@
+[project]
+name = "fast-api"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Gregory Morris", email = "gwm1980@gmail.com"},
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "sqlalchemy>=2.0.28",
+    "pymysql>=1.1.0",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "NONE"}
+
+
+[tool.pdm]
+distribution = false
