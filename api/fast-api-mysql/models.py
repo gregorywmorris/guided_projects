@@ -7,10 +7,10 @@ class User(Base):
     id=Column(Integer, primary_key=True, index=True)
     username=Column(String(50), unique=True)
 
-class Post(base):
+class Post(Base):
     __tablename__='posts'
 
     id=Column(Integer, primary_key=True, index=True)
-    title=Column(string(50))
-    content=Column(string(50))
+    title=Column(String(50))
+    content=Column(String(50))
     user_id=Column(Integer)
