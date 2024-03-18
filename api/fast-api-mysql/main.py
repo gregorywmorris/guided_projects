@@ -58,3 +58,7 @@ async def read_user(user_id: int, db: db_dependency):
     if user is None:
         raise HTTPException(status_code=404, detail='User not found')
     return user
+
+if __name__ == "__main__":
+    # Run the FastAPI application using Uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
