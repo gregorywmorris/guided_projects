@@ -14,7 +14,8 @@ airbyte_instance = AirbyteResource(
     port="8000",
     # If using basic auth, include username and password:
     username="airbyte",
-    password=os.getenv("AIRBYTE_PASSWORD")
+    password="password"
+    # password=os.getenv("AIRBYTE_PASSWORD")
 )
 
 airbyte_assets = load_assets_from_airbyte_instance(airbyte_instance, key_prefix="faker")

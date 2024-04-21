@@ -6,6 +6,7 @@ provider "registry.terraform.io/airbytehq/airbyte" {
   constraints = "0.3.3"
   hashes = [
     "h1:a6g5uWP/pt1/popVNlKwnTssWNfdYY4KVFPMisN/yvU=",
+    "h1:bE8tU5/PIfCf/RLCbh0UVJdviausfnr8n11mar+W7Eo=",
     "zh:0efa470b34d9b912b47efe4469c51713bfc3c2413e52c17e1e903f2a3cddb2f6",
     "zh:1bddd69fa2c2d4f3e239d60555446df9bc4ce0c0cabbe7e092fe1d44989ab004",
     "zh:2e20540403a0010007b53456663fb037b24e30f6c8943f65da1bcf7fa4dfc8a6",

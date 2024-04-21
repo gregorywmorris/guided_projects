@@ -1,0 +1,28 @@
+[project]
+name = "airbyte-dbt-dagster"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "gregorywmorris", email = "gwm1980@gmail.com"},
+]
+dependencies = [
+    "dagster",
+    "dagster-airbyte",
+    "dagster-cloud",
+    "dagster-dbt",
+    "dbt-bigquery",
+    "dbt>=1.0.0.37.5",
+    "dagster-webserver>=1.6.14",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "NONE"}
+
+
+[project.optional-dependencies]
+dev = [
+    "dagit",
+    "pytest",
+]
+[tool.pdm]
+distribution = false

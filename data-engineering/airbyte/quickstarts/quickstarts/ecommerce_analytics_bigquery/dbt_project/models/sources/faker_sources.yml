@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: faker
     # Use your BigQuery project ID
-    database: your_project_id
+    database: elaborate-art-318223
     # Use your BigQuery dataset name
     schema: raw_data
 
