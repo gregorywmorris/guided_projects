@@ -1,0 +1,23 @@
+[project]
+name = "xgboost"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "gregorywmorris", email = "gwm1980@gmail.com"},
+]
+dependencies = [
+    "numpy>=1.26.4",
+    "pandas>=2.2.2",
+    "scipy>=1.13.0",
+    "matplotlib>=3.9.0",
+    "scikit-learn>=1.4.2",
+    "ipykernel>=6.29.4",
+    "xgboost>=2.0.3",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
