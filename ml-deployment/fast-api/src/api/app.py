@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 17 21:40:41 2020
+Created on 6/23/2024
 
-@author: win10
 """
 
 # 1. Library imports
@@ -12,6 +11,7 @@ from BankNotes import BankNote
 import numpy as np
 import pickle
 import pandas as pd
+
 # 2. Create the app object
 app = FastAPI()
 pickle_in = open("classifier.pkl","rb")
