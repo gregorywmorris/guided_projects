@@ -20,12 +20,6 @@ app = FastAPI()
 pickle_in = open("classifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
-# Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# Jinja2 templates
-templates = Jinja2Templates(directory="templates")
-
 # 3. Custom OpenAPI Schema
 def custom_openapi():
     if app.openapi_schema:
@@ -33,7 +27,8 @@ def custom_openapi():
     openapi_schema = get_openapi(
         title="Customized FastAPI",
         version="1.0.0",
-        description="This is a customized FastAPI application with a personalized Swagger UI",
+        description='<img src="/static/images/swagger.png" style="width: 200px;" alt="Swagger Image"/> \
+            <p><strong>This is a customized FastAPI application with a personalized Swagger UI.</strong></p>',
         routes=app.routes,
     )
     app.openapi_schema = openapi_schema
@@ -83,21 +78,9 @@ def predict_banknote(data: BankNote):
         'prediction': prediction
     }
 
-# 8. Custom Swagger UI Route
-@app.get("/docs", include_in_schema=False)
-async def custom_swagger_ui_html(req: Request) -> HTMLResponse:
-    return templates.TemplateResponse("custom_swagger_ui.html", {
-        "request": req,
-        "swagger_ui_bundle_url": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js",
-        "swagger_ui_standalone_preset_url": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-standalone-preset.js",
-        "swagger_css_url": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css",
-        "openapi_url": app.openapi_url
-    })
-
-# 9. Run the API with uvicorn
+# 8. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000)
 
 # Command to run: uvicorn app:app --reload
-# UI = http://127.0.0.1:8000/docs
